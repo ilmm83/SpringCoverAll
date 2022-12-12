@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring_cover_all
+    username: postgres
+    password: 51423
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    dialect: org.hibernate.dialect.PostgresPlusDialect
+    format_sql: true
+    highlight_sql: true
+    show_sql: true
+  main:
+    web-application-type: servlet
+
