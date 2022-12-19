@@ -5,6 +5,7 @@ import com.example.SpringCoverAll.model.Student;
 import com.example.SpringCoverAll.repository.AuthRepository;
 import com.example.SpringCoverAll.utils.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,12 +17,13 @@ import static com.example.SpringCoverAll.roles.ApplicationUserRole.STUDENT;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@ToString
 public class CommonService {
 
     private final AuthRepository repository;
     private final PasswordEncoder passwordEncoder;
 
-    public Student getStudentById(int id) {
+    public Student getStudentById(Integer id) {
         Optional<Student> optional = repository.findById(id);
         if (optional.isEmpty()) throw new RuntimeException("User hasn't exist!");
         return optional.get();
@@ -40,10 +42,8 @@ public class CommonService {
     }
 
     @Transactional
-    public Student deleteStudent(int id) {
-        Student student = getStudentById(id);
+    public void deleteStudent(int id) {
         repository.deleteById(id);
-        return student;
     }
 
     public boolean isStudentExist(Student student) {
